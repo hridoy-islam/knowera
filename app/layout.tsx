@@ -6,9 +6,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Omniscient Education - Empowering Minds Through Excellence",
+  title: "KnowEra - Expert Education Consultancy for UK Students",
   description:
-    "Discover world-class education opportunities with Omniscient. We bridge the gap between ambition and achievement through innovative learning solutions and global partnerships.",
+    "Your future starts here. Get Personalised Guidance Every Step of the Way for university applications in the UK.",
 };
 
 export default function RootLayout({
