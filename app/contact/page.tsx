@@ -49,13 +49,13 @@ export default function ContactPage() {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Visit Our Office",
-      details: "123 Education Lane, University City, London, SW1A 0AA, U.K",
+      details: "80-82 Nelson Street E1 2DY London",
       color: "knowera-blue",
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Call Us",
-      details: "+44 (0) 123 456 7890",
+      details: "+447759018669",
       color: "knowera-orange",
     },
     {
@@ -67,7 +67,7 @@ export default function ContactPage() {
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Office Hours",
-      details: "Mon-Fri: 9AM-5PM, Sat: 10AM-2PM",
+      details: "Mon-Fri: 9AM-6PM, Sat: 11AM-3PM",
       color: "knowera-orange",
     },
   ];

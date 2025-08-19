@@ -22,6 +22,7 @@ export default function BookConsultationPage() {
     name: "",
     email: "",
     phone: "",
+    city: "",
     preferredDate: "",
     preferredTime: "",
     message: "",
@@ -38,6 +39,7 @@ export default function BookConsultationPage() {
       name: "",
       email: "",
       phone: "",
+      city: "",
       preferredDate: "",
       preferredTime: "",
       message: "",
@@ -215,16 +217,35 @@ export default function BookConsultationPage() {
                       htmlFor="phone"
                       className="block text-sm font-semibold text-gray-700 mb-2"
                     >
-                      Phone Number
+                      Phone Number *
                     </label>
                     <input
                       type="tel"
                       id="phone"
+                      required
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-knowera-blue-text focus:border-transparent transition-all duration-200"
-                      placeholder="Your phone number (optional)"
+                      placeholder="Your phone number "
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="city"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
+                      City *
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      required
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-knowera-blue-text focus:border-transparent transition-all duration-200"
+                      placeholder="City"
                     />
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">

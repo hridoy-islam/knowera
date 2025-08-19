@@ -38,7 +38,7 @@ export default function WhyKnowEraPage() {
       icon: <Handshake className="w-8 h-8" />,
       title: "End-to-End Application Support",
       description:
-        "From your first enquiry to your final enrollment, we walk beside you every step of the way. We assist with university selection, application submissions, documentation checks, personal statement editing, scholarship advice, visa guidance for international students, and more.",
+        "From your first enquiry to your final enrolment , we walk beside you every step of the way. We assist with university selection, application submissions, documentation checks, personal statement editing, scholarship advice, visa guidance for international students, and more.",
       color: "knowera-orange",
     },
     {
@@ -109,7 +109,7 @@ export default function WhyKnowEraPage() {
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-6 h-6 text-knowera-blue-text flex-shrink-0 mt-1" />
                   <span className="text-lg text-gray-700">
-                    End-to-end support from first enquiry to final enrollment.
+                    End-to-end support from first enquiry to final enrolment .
                   </span>
                 </li>
               </ul>

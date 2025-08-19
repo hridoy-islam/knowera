@@ -92,9 +92,9 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-knowera-blue-text mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    123 Education Lane, University City
+                    80-82 Nelson Street
                     <br />
-                    London, SW1A 0AA, U.K
+                    E1 2DY London
                   </p>
                 </div>
               </div>
@@ -103,10 +103,10 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-knowera-orange-text flex-shrink-0" />
                 <a
-                  href="tel:+441234567890"
+                  href="tel:+447759018669"
                   className="text-gray-600 hover:text-knowera-blue-text transition-colors text-sm"
                 >
-                  +44 (0) 123 456 7890
+                  +447759018669
                 </a>
               </div>
 
@@ -125,8 +125,8 @@ export default function Footer() {
               <div className="flex items-start space-x-3">
                 <Clock className="w-5 h-5 text-knowera-orange-text mt-1 flex-shrink-0" />
                 <div className="text-gray-600 text-sm">
-                  <div>Mon-Fri: 9AM-5PM</div>
-                  <div>Sat: 10AM-2PM</div>
+                  <div>Mon-Fri: 9AM-6PM</div>
+                  <div>Sat: 11AM-3PM</div>
                 </div>
               </div>
             </div>

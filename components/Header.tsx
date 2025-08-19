@@ -87,7 +87,7 @@ export default function Header() {
           <div className="p-6">
             <div className="flex items-center justify-between mb-8">
               <Image
-                src="/knowera-logo.png"
+                src="/logo.png"
                 alt="KnowEra Logo"
                 width={150}
                 height={40}

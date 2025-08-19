@@ -37,7 +37,7 @@ export default function WhyKnowEra() {
       icon: <Handshake className="w-6 h-6" />,
       title: "End-to-End Application Support",
       description:
-        "From your first enquiry to your final enrollment, we walk beside you every step of the way, assisting with university selection, application submissions, and more.",
+        "From your first enquiry to your final enrolment , we walk beside you every step of the way, assisting with university selection, application submissions, and more.",
       color: "knowera-orange",
     },
     {
