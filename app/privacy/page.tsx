@@ -241,12 +241,32 @@ export default function PrivacyPolicyPage() {
               If you have any questions about this Privacy Policy or our data
               practices, please contact us at:
             </p>
+
             <p className="mb-2">
-              <strong>Email:</strong> info@knowera.co.uk
+              <strong>Email:</strong>{" "}
+              <a
+                href="mailto:info@knowera.co.uk"
+                className="text-knowera-blue-text hover:underline"
+              >
+                info@knowera.co.uk
+              </a>
             </p>
             <p className="mb-2">
-              <strong>Address:</strong> 123 Education Lane, University City,
-              London, SW1A 0AA, U.K
+              <strong>Phone:</strong>{" "}
+              <a
+                href="tel:+447759018669"
+                className="text-knowera-blue-text hover:underline"
+              >
+                +44 7759 018669
+              </a>
+            </p>
+            <p className="mb-2">
+              <strong>Address:</strong> 80-82 Nelson Street, E1 2DY London,
+              United Kingdom
+            </p>
+            <p className="mb-2">
+              <strong>Office Hours:</strong> Monday–Friday: 9:00 AM – 6:00 PM,
+              Saturday: 11:00 AM – 3:00 PM
             </p>
           </div>
         </div>

@@ -15,7 +15,6 @@ import {
   BookOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function BookConsultationPage() {
   const [formData, setFormData] = useState({
@@ -28,22 +27,44 @@ export default function BookConsultationPage() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log("Consultation Request Data:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000); // Reset after 3 seconds
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      city: "",
-      preferredDate: "",
-      preferredTime: "",
-      message: "",
-    }); // Clear form
+
+    if (isLoading) return; // Prevent multiple submissions
+
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/send-consulting-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        // Reset form after success
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          city: "",
+          preferredDate: "",
+          preferredTime: "",
+          message: "",
+        });
+        // Auto-hide success message
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        console.error("Failed to book consultation");
+      }
+    } catch (error) {
+      console.error("Error submitting consultation form:", error);
+    } finally {
+      setIsLoading(false); // Always stop loading
+    }
   };
 
   const handleChange = (
@@ -63,7 +84,6 @@ export default function BookConsultationPage() {
       <section className="relative py-20 bg-gradient-to-br from-knowera-orange/5 to-knowera-blue/5 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsla(var(--knowera-orange),0.1),transparent_50%)]"></div>
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-          {/* <CalendarCheck className="w-16 h-16 text-knowera-orange-text mx-auto mb-6" /> */}
           <h1 className="text-5xl md:text-6xl font-black mb-6">
             <span className="text-gray-900">Book a </span>
             <span className="text-gradient-knowera-reverse">
@@ -154,6 +174,7 @@ export default function BookConsultationPage() {
                 ))}
               </div>
             </div>
+
             {/* Consultation Form */}
             <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
               <div className="flex items-center mb-6">
@@ -194,6 +215,7 @@ export default function BookConsultationPage() {
                       placeholder="Your full name"
                     />
                   </div>
+
                   <div>
                     <label
                       htmlFor="email"
@@ -212,6 +234,7 @@ export default function BookConsultationPage() {
                       placeholder="Your email address"
                     />
                   </div>
+
                   <div>
                     <label
                       htmlFor="phone"
@@ -222,14 +245,15 @@ export default function BookConsultationPage() {
                     <input
                       type="tel"
                       id="phone"
-                      required
                       name="phone"
+                      required
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-knowera-blue-text focus:border-transparent transition-all duration-200"
-                      placeholder="Your phone number "
+                      placeholder="Your phone number"
                     />
                   </div>
+
                   <div>
                     <label
                       htmlFor="city"
@@ -240,14 +264,15 @@ export default function BookConsultationPage() {
                     <input
                       type="text"
                       id="city"
-                      required
                       name="city"
+                      required
                       value={formData.city}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-knowera-blue-text focus:border-transparent transition-all duration-200"
-                      placeholder="City"
+                      placeholder="Your city"
                     />
                   </div>
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label
@@ -284,6 +309,7 @@ export default function BookConsultationPage() {
                       />
                     </div>
                   </div>
+
                   <div>
                     <label
                       htmlFor="message"
@@ -302,14 +328,23 @@ export default function BookConsultationPage() {
                     ></textarea>
                   </div>
 
+                  {/* Submit Button with Loading State */}
                   <Button
                     type="submit"
                     className="w-full btn-knowera-gradient font-bold py-4 rounded-xl transition-all duration-300 group"
+                    disabled={isLoading}
                   >
-                    <span className="flex items-center justify-center">
-                      Confirm Consultation
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </span>
+                    {isLoading ? (
+                      <span className="flex items-center justify-center">
+                        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
+                        Booking...
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center">
+                        Confirm Consultation
+                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    )}
                   </Button>
                 </form>
               )}

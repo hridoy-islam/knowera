@@ -24,20 +24,46 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log("Form Data:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000); // Reset after 3 seconds
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" }); // Clear form
+
+    if (isLoading) return; // Prevent double submission
+
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        // Hide success message after 3 seconds
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        console.error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsLoading(false); // Always stop loading
+    }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,
@@ -80,14 +106,12 @@ export default function ContactPage() {
       <section className="relative py-20 bg-gradient-to-br from-knowera-blue/5 to-knowera-orange/5 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsla(var(--knowera-blue),0.1),transparent_50%)]"></div>
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-          {/* <MessageSquare className="w-16 h-16 text-knowera-blue-text mx-auto mb-6" /> */}
           <h1 className="text-5xl md:text-6xl font-black mb-6">
             <span className="text-gray-900">Get In </span>
             <span className="text-gradient-knowera">Touch</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-            Ready to start your educational journey? We're here to help you
-            every step of the way.
+            Ready to start your educational journey? We're here to help you every step of the way.
           </p>
         </div>
       </section>
@@ -96,22 +120,15 @@ export default function ContactPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-16">
-            {/* Contact Information - Takes 1 column */}
+            {/* Contact Information */}
             <div className="space-y-8">
               <div className="flex items-center mb-6">
                 <Users className="w-8 h-8 text-knowera-blue-text mr-3" />
                 <h2 className="text-3xl font-black">
                   <span className="text-gray-900">Contact </span>
-                  <span className="text-gradient-knowera-reverse">
-                    Information
-                  </span>
+                  <span className="text-gradient-knowera-reverse">Information</span>
                 </h2>
               </div>
-
-              {/* <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                We're here to answer your questions and help you take the next
-                step in your educational journey.
-              </p> */}
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -130,34 +147,16 @@ export default function ContactPage() {
                         {info.icon}
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">
-                          {info.title}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
-                          {info.details}
-                        </p>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
+                        <p className="text-gray-600 leading-relaxed">{info.details}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-
-              {/* Map Placeholder */}
-              {/* <div className="bg-gradient-to-br from-knowera-blue/5 to-knowera-orange/5 rounded-2xl p-8 text-center">
-                <MapPin className="w-16 h-16 text-knowera-blue-text mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Find Us on Map
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Located in the heart of London, easily accessible by public
-                  transport.
-                </p>
-                <Button className="btn-knowera-gradient font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300">
-                  View on Google Maps
-                </Button>
-              </div> */}
             </div>
-            {/* Contact Form - Takes 2 columns */}
+
+            {/* Contact Form */}
             <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
               <div className="flex items-center mb-6">
                 <Send className="w-8 h-8 text-knowera-blue-text mr-3" />
@@ -170,21 +169,14 @@ export default function ContactPage() {
               {isSubmitted ? (
                 <div className="text-center py-12">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4 animate-bounce" />
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Message Sent Successfully!
-                  </h3>
-                  <p className="text-gray-600">
-                    We'll get back to you within 24 hours.
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h3>
+                  <p className="text-gray-600">We'll get back to you within 24 hours.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
+                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -199,10 +191,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -220,10 +209,7 @@ export default function ContactPage() {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
+                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
                         Phone Number
                       </label>
                       <input
@@ -237,10 +223,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label
-                        htmlFor="subject"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                      >
+                      <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
                         Subject *
                       </label>
                       <select
@@ -254,9 +237,7 @@ export default function ContactPage() {
                         <option value="">Select a subject</option>
                         <option value="admissions">Admissions Inquiry</option>
                         <option value="courses">Course Information</option>
-                        <option value="partnership">
-                          Partnership Opportunities
-                        </option>
+                        <option value="partnership">Partnership Opportunities</option>
                         <option value="support">Student Support</option>
                         <option value="other">Other</option>
                       </select>
@@ -264,10 +245,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -282,14 +260,23 @@ export default function ContactPage() {
                     ></textarea>
                   </div>
 
+                  {/* Submit Button with Loading State */}
                   <Button
                     type="submit"
                     className="w-full btn-knowera-gradient font-bold py-4 rounded-xl transition-all duration-300 group"
+                    disabled={isLoading}
                   >
-                    <span className="flex items-center justify-center">
-                      Send Message
-                      <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </span>
+                    {isLoading ? (
+                      <span className="flex items-center justify-center">
+                        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
+                        Sending...
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center">
+                        Send Message
+                        <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    )}
                   </Button>
                 </form>
               )}
@@ -297,62 +284,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      {/* <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6">
-              <span className="text-gray-900">Frequently Asked </span>
-              <span className="text-gradient-knowera-reverse">Questions</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find quick answers to common questions about our programs and
-              services.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            {[
-              {
-                question: "How do I apply for a course?",
-                answer:
-                  "You can apply online through our website or contact our admissions team for personalized guidance. We also offer end-to-end application support.",
-              },
-              {
-                question: "What are the payment options available?",
-                answer:
-                  "We provide clear guidance on tuition fees, maintenance loans, and funding options, including support with Student Finance England applications or scholarship searches.",
-              },
-              {
-                question: "Do you provide career support after graduation?",
-                answer:
-                  "While our primary focus is admissions, we offer advice on career development workshops and networking opportunities as part of our holistic support.",
-              },
-              {
-                question: "Are your services free?",
-                answer:
-                  "We offer free initial consultations with no commitment. Our full range of services involves a transparent fee structure, always in the best interest of the student.",
-              },
-              {
-                question: "Can I study part-time while working?",
-                answer:
-                  "We help you identify universities and courses that offer flexible scheduling options, including evening and weekend classes, to accommodate working professionals.",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       <Footer />
     </div>
