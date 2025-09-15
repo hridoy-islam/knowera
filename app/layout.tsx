@@ -6,10 +6,61 @@ import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// export const metadata: Metadata = {
+//   title: "KnowEra - Expert Education Consultancy for UK Students",
+//   description:
+//     "Your future starts here. Get Personalised Guidance Every Step of the Way for university applications in the UK.",
+// };
+
+
 export const metadata: Metadata = {
-  title: "KnowEra - Expert Education Consultancy for UK Students",
+ title: {
+    default: "KnowEra",
+    template: "%s | KnowEra",
+  },
   description:
-    "Your future starts here. Get Personalised Guidance Every Step of the Way for university applications in the UK.",
+    "KnowEra is a UK-based education consultancy providing personalised guidance, university application support, and career-focused learning opportunities for students worldwide.",
+  keywords: [
+    "KnowEra",
+    "education consultancy",
+    "UK universities",
+    "international students",
+    "personal statement support",
+    "university application guidance",
+    "student visa assistance",
+    "higher education",
+    "career support",
+    "London college",
+    "multilingual support",
+    "study abroad",
+  ],
+  openGraph: {
+    title: "KnowEra",
+    description:
+      "KnowEra provides personalised, end-to-end education consultancy, guiding students worldwide through university applications, visas, and career planning.",
+    url: "/",
+    siteName: "KnowEra",
+    images: [
+      {
+        url: "/logo.png", // replace with your actual image
+        width: 1200,
+        height: 630,
+        alt: "KnowEra",
+      },
+    ],
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KnowEra",
+    description:
+      "UK-based education consultancy providing personalised guidance and university application support for students worldwide.",
+    images: ["/logo.png"], // replace with your actual image
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
