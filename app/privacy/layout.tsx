@@ -24,7 +24,7 @@ title: "Privacy Policy",
     siteName: "KnowEra",
     images: [
       {
-        url: "/logo.png",
+        url: "https://www.knowera.co.uk/hero.png",
         width: 1200,
         height: 630,
         alt: "Privacy Policy",
@@ -38,7 +38,7 @@ title: "Privacy Policy",
     title: "Privacy Policy",
     description:
       "KnowEra is committed to protecting your personal data. Learn how we collect, use, and safeguard your information in accordance with UK GDPR and the Data Protection Act 2018.",
-    images: ["/logo.png"],
+    images: ["https://www.knowera.co.uk/hero.png"],
   },
   alternates: {
     canonical: "/privacy",

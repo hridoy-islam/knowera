@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "KnowEra",
     images: [
       {
-        url: "/logo.png",
+        url: "https://www.knowera.co.uk/hero.png",
         width: 1200,
         height: 630,
         alt: "KnowEra Resources",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Resources",
     description:
       "Access KnowEra's curated resources on UK education. Explore expert articles, guides, and tips on UCAS applications, university selection, student finance, personal statements, and international student life.",
-    images: ["/logo.png"],
+    images: ["https://www.knowera.co.uk/hero.png"],
   },
   alternates: {
     canonical: "/resources",

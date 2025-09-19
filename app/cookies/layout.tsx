@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "KnowEra",
     images: [
       {
-        url: "/logo.png",
+        url: "https://www.knowera.co.uk/hero.png",
         width: 1200,
         height: 630,
         alt: "Cookie Policy",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Cookie Policy",
     description:
       "Learn how KnowEra uses cookies and similar technologies on our website. Understand your choices, types of cookies, and how we handle your data in accordance with UK GDPR and PECR regulations.",
-    images: ["/logo.png"],
+    images: ["https://www.knowera.co.uk/hero.png"],
   },
   alternates: {
     canonical: "/cookies",

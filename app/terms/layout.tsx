@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "KnowEra",
     images: [
       {
-        url: "/logo.png",
+        url: "https://www.knowera.co.uk/hero.png",
         width: 1200,
         height: 630,
         alt: "Terms of Service",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Terms of Service",
     description:
       "Read KnowEra's Terms of Service to understand the rules, obligations, and guidelines governing the use of our website and educational consultancy services.",
-    images: ["/logo.png"],
+    images: ["https://www.knowera.co.uk/hero.png"],
   },
   alternates: {
     canonical: "/terms",
