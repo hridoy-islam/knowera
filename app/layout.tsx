@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "KnowEra",
     description:
       "UK-based education consultancy providing personalised guidance and university application support for students worldwide.",
-    images: ["/logo.png"], // replace with your actual image
+    images: ["https://www.knowera.co.uk/logo.png"], // replace with your actual image
   },
   alternates: {
     canonical: "https://www.knowera.co.uk/",
