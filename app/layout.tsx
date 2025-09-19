@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.knowera.co.uk/logo.png", // replace with your actual image
-        width: 1200,
+        width: 630,
         height: 630,
         alt: "KnowEra",
       },
