@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "KnowEra",
     description:
       "KnowEra provides personalised, end-to-end education consultancy, guiding students worldwide through university applications, visas, and career planning.",
-    url: "/",
+    url: "https://www.knowera.co.uk/",
     siteName: "KnowEra",
     images: [
       {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     images: ["/logo.png"], // replace with your actual image
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://www.knowera.co.uk/",
   },
 };
 
