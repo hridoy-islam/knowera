@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "KnowEra",
     images: [
       {
-        url: "/logo.png", // replace with your actual image
+        url: "https://www.knowera.co.uk/logo.png", // replace with your actual image
         width: 1200,
         height: 630,
         alt: "KnowEra",
